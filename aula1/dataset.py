@@ -31,11 +31,10 @@ class Dataset:
         with open(filename, 'r') as f:
             lines = f.readlines()
             data = [line.strip().split(',') for line in lines[1:]]
+            self.column_names = lines[0].strip().split(',')[:-1]
         if self.y is None:
-            self.column_names = lines[0].strip().split(',')
             self.X = np.array(data)
         else:
-            self.column_names = lines[0].strip().split(',')[:-1]
             self.X = np.array(data)[:, :-1]
             self.y = np.array(data)[:, -1]
         
