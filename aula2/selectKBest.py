@@ -17,7 +17,7 @@ class SelectKBest:
 
     def fit(self, dataset: Dataset) -> None:
         #scores,
-        pvalues = self.score_func(dataset)
+        pvalues = self.score_func(dataset).calculate()
         #self.F = []
         self.p = []
         for i in range(dataset.X.shape[1]):

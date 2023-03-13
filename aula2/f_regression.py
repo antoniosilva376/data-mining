@@ -32,11 +32,19 @@ class f_regression:
         df_num = X.shape[1] - 1
         df_denom = X.shape[0] - X.shape[1]
 
-        # calculate the F-statistic and p-value
-        F = (TSS - RSS) / df_num / (RSS / df_denom)
-        p_value = 1 - f.cdf(F, df_num, df_denom)
+        # calculate the F-statistic for each feature
+        F = np.zeros(X.shape[1])
+        for i in range(X.shape[1]):
+            X_i = X[:, i]
+            beta_i = beta_hat[i]
+            e_i = y - beta_i * X_i
+            RSS_i = e_i.T @ e_i
+            F[i] = ((TSS - RSS_i) / df_num) / (RSS_i / df_denom)
 
-        return p_value
+        # calculate the p-values for each feature
+        p_values = [1 - f.cdf(f_stat, df_num, df_denom) for f_stat in F]
+
+        return p_values[1:]  # exclude the intercept term
 
 
 
