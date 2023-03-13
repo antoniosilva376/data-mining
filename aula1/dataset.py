@@ -1,10 +1,10 @@
 import numpy as np
 
 class Dataset:
-    def __init__(self, X=None, y=None, column_names=None, label=None):
+    def __init__(self, X=None, y=None, features=None, label=None):
         self.X = X
         self.y = y
-        self.column_names = column_names
+        self.features = features
         self.label = label
         
     def set_X(self, X):
@@ -13,8 +13,8 @@ class Dataset:
     def set_y(self, y):
         self.y = y
         
-    def set_column_names(self, column_names):
-        self.column_names = column_names
+    def set_features(self, features):
+        self.features = features
 
     def set_label(self, label):
         self.label=label
@@ -25,8 +25,8 @@ class Dataset:
     def get_y(self):
         return self.y
     
-    def get_column_names(self):
-        return self.column_names
+    def get_features(self):
+        return self.features
 
     def get_label(self):
         return self.label
@@ -36,7 +36,7 @@ class Dataset:
             with open(filename, 'r') as f:
                 lines = f.readlines()
                 data = [line.strip().split(',') for line in lines[1:]]
-                self.column_names = lines[0].strip().split(',')
+                self.features = lines[0].strip().split(',')
             if self.y is None:
                 self.X = np.array(data)
             else:
@@ -59,7 +59,7 @@ class Dataset:
             with open(filename, 'r') as f:
                 lines = f.readlines()
                 data = [line.strip().split('\t') for line in lines[1:]]
-                self.column_names = lines[0].strip().split('\t')
+                self.features = lines[0].strip().split('\t')
             if self.y is None:
                 self.X = np.array(data)
             else:
@@ -105,10 +105,10 @@ class Dataset:
         q50 = np.percentile(self.X[:, 1:].astype(float), 50, axis=0)
         q75 = np.percentile(self.X[:, 1:].astype(float), 75, axis=0)
 
-        for i, column_name in enumerate(self.column_names[1:]):
-            if column_name != "":
+        for i, feature_name in enumerate(self.features[1:]):
+            if feature_name != "":
                 print("--------------------------------\n")
-                print("column:", column_name)
+                print("Feature:", feature_name)
                 print("Number of elements:", num_elements)
                 print("Minimum value:", mins[i])
                 print("Maximum value: ", maxs[i])
@@ -120,19 +120,19 @@ class Dataset:
                 print("--------------------------------\n")
 
 
-
+"""
 ds = Dataset()
 ds.read_csv('notas.csv')
 print("X:\n" + str(ds.X))
 print("y:\n" + str(ds.y))
-print("column_names:\n" + str(ds.column_names))
+print("features:\n" + str(ds.features))
 print("count_nulls:\n" + str(ds.count_nulls()))
 ds.fill_nulls()
 print("-------------------")
 print("X:\n" + str(ds.X))
 print("y:\n" + str(ds.y))
-print("column_names:\n" + str(ds.column_names))
+print("features:\n" + str(ds.features))
 print("count_nulls:\n" + str(ds.count_nulls()))
-ds.describe()
+ds.describe()"""
 
 

@@ -1,11 +1,6 @@
 import numpy as np
-import os
 import sys
-
-# Add the path to the parent directory to the system path
-sys.path.insert(0, os.path.abspath('..'))
-
-# Import the Dataset class from Aula01.dataset
+sys.path.append('..')
 from aula1.dataset import Dataset
 
 
@@ -89,7 +84,7 @@ class VarianceThreshold:
 
 
 if __name__ == '__main__':
-    from si.data.dataset import Dataset
+    from aula1.dataset import Dataset
 
     dataset = Dataset(X=np.array([[0, 2, 0, 3],
                                   [0, 1, 4, 3],
