@@ -12,9 +12,11 @@ class f_classif:
         classes = np.unique(self.dataset.y)
         class_data = [self.dataset.X[self.dataset.y == c] for c in classes]
         F, p = f_oneway(*class_data)
+        print(p)
         return F, p
 
 
+"""
 # create a toy dataset
 X = np.random.randn(100, 5)
 y = np.random.choice(["A", "B", "C"], 100)
@@ -26,3 +28,4 @@ Fv, pv = f.calculate()
 
 print("F value:", Fv)
 print("p value:", pv)
+"""

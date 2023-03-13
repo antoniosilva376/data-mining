@@ -44,10 +44,12 @@ class f_regression:
         # calculate the p-values for each feature
         p_values = [1 - f.cdf(f_stat, df_num, df_denom) for f_stat in F]
 
-        return p_values[1:]  # exclude the intercept term
+
+        print(p_values[1:])
+        return None, p_values[1:]  # exclude the intercept term
 
 
-
+"""
 # create a toy dataset
 # generates values from 0 to 1
 X1 = np.random.randn(100, 5)
@@ -59,3 +61,5 @@ f1 = f_regression(dS)
 pv = f1.calculate()
 
 print("p-values:", pv)
+"""
+
