@@ -21,7 +21,7 @@ class SelectKBest:
         self.F = []
         self.p = []
         for i in range(dataset.X.shape[1]):
-            if self.F:
+            if scores is not None:
                 self.F.append(scores[i])
             self.p.append(pvalues[i])
 
