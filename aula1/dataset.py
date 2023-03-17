@@ -48,7 +48,7 @@ class Dataset:
     def write_csv(self, filename):
         try:
             with open(filename, 'w') as f:
-                f.write(','.join(self.features_names) + ',' + self.label + '\n')
+                f.write(','.join(self.features) + ',' + self.label + '\n')
                 for row in range(self.X.shape[0]):
                     f.write(','.join([str(elem) for elem in self.X[row]]) + ',' + str(self.y[row]) + '\n')
         except IOError:
