@@ -1,6 +1,7 @@
 import numpy as np
 import unittest
 from sklearn.metrics import accuracy_score, precision_score
+from sklearn.tree import DecisionTreeClassifier
 
 """The Node class represents a node in the decision tree. It has several attributes,
 including feature_index, threshold, value, left, and right. These attributes store
@@ -241,8 +242,18 @@ class TestDecisionTree(unittest.TestCase):
         y_pred = dt.predict(X)
         self.assertEqual(len(y_pred), len(y))
 
+        print("Custom Decision Tree")
         print("Accuracy:", accuracy_score(y, y_pred))
         print("Precision:", precision_score(y, y_pred))
+
+        # scikit-learn implementation
+        dt_sklearn = DecisionTreeClassifier(max_depth=5)
+        dt_sklearn.fit(X,y)
+        y_pred_sklearn = dt_sklearn.predict(X)
+
+        print("Scikit-learn Decision Tree")
+        print("Accuracy:", accuracy_score(y, y_pred_sklearn))
+        print("Precision:", precision_score(y, y_pred_sklearn))
 
 
 def main():
