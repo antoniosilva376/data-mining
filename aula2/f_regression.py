@@ -35,10 +35,6 @@ class f_regression:
         return F, p_values
 
 
-        print(p_values[1:])
-        return None, p_values[1:]  # exclude the intercept term
-
-
 class TestFRegression(unittest.TestCase):
     def test_f_regression(self):
         # create a toy dataset
