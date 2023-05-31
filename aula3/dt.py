@@ -237,23 +237,24 @@ class TestDecisionTree(unittest.TestCase):
 
     def test_predict(self):
         X, y = self.generate_random_dataset(1000, 10, 2)
-        dt = DecisionTree(max_depth=5)
+        Xp, yp = self.generate_random_dataset(300, 10, 2)
+        dt = DecisionTree(max_depth=10)
         dt.fit(X, y)
-        y_pred = dt.predict(X)
-        self.assertEqual(len(y_pred), len(y))
+        y_pred = dt.predict(Xp)
+        self.assertEqual(len(y_pred), len(yp))
 
         print("Custom Decision Tree")
-        print("Accuracy:", accuracy_score(y, y_pred))
-        print("Precision:", precision_score(y, y_pred))
+        print("Accuracy:", accuracy_score(yp, y_pred))
+        print("Precision:", precision_score(yp, y_pred))
 
         # scikit-learn implementation
-        dt_sklearn = DecisionTreeClassifier(max_depth=5)
-        dt_sklearn.fit(X,y)
-        y_pred_sklearn = dt_sklearn.predict(X)
+        dt_sklearn = DecisionTreeClassifier(max_depth=10)
+        dt_sklearn.fit(X, y)
+        y_pred_sklearn = dt_sklearn.predict(Xp)
 
         print("Scikit-learn Decision Tree")
-        print("Accuracy:", accuracy_score(y, y_pred_sklearn))
-        print("Precision:", precision_score(y, y_pred_sklearn))
+        print("Accuracy:", accuracy_score(yp, y_pred_sklearn))
+        print("Precision:", precision_score(yp, y_pred_sklearn))
 
 
 def main():
@@ -263,3 +264,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
